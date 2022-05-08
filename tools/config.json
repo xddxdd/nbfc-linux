@@ -100,6 +100,24 @@
       "valid": "parameter >= 0 && parameter <= 255",
       "help": "The register which NBFC uses to control the fan"
     },
+    "SpecificTemperatureReadRegister": {
+      "type": "short",
+      "default": -1,
+      "valid": "parameter >= -1 && parameter <= 255",
+      "help": "The register from which NBFC reads the temperature for this fan."
+    },
+    "SpecificTemperatureMultiplier": {
+      "type": "int",
+      "default": 1,
+      "valid": "parameter >= 1",
+      "help": "The multiplier of temperature value read from EC."
+    },
+    "SpecificTemperatureDivider": {
+      "type": "int",
+      "default": 1,
+      "valid": "parameter >= 1",
+      "help": "The divider of temperature value read from EC."
+    },
     "MinSpeedValue": {
       "type": "short",
       "help": "The value which puts the fan to the lowest possible speed (usually this stops the fan). Must be an integer between 0 and 255 or 0 and 65535 if ReadWriteWords is `true`. Note: MinSpeedValue does not necessarily have to be smaller than MaxSpeedValue"

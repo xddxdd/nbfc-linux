@@ -1,4 +1,4 @@
-/* Auto generated code ['../tools/config.py', 'header'] */
+/* Auto generated code ['./tools/config.py', 'header'] */
 
 struct TemperatureThreshold {
 	short           UpThreshold;
@@ -39,6 +39,9 @@ struct FanConfiguration {
 	const char*     FanDisplayName;
 	short           ReadRegister;
 	short           WriteRegister;
+	short           SpecificTemperatureReadRegister;
+	int             SpecificTemperatureMultiplier;
+	int             SpecificTemperatureDivider;
 	short           MinSpeedValue;
 	short           MaxSpeedValue;
 	short           MinSpeedValueRead;

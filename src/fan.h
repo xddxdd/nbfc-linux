@@ -4,6 +4,7 @@
 #include "macros.h"
 #include "error.h"
 #include "temperature_threshold_manager.h"
+#include "temperature_filter.h"
 
 #include <stdbool.h>
 
@@ -26,6 +27,7 @@ struct Fan {
   int   fanSpeedSteps;             /*const*/
   int   criticalTemperatureOffset;
 
+  TemperatureFilter tempFilter;
   ThresholdManager threshMan;
   float targetFanSpeed;
   float currentSpeed;
@@ -33,7 +35,7 @@ struct Fan {
   bool isCritical;
 };
 
-Error* Fan_Init(Fan*, FanConfiguration*, int criticalTemperature, bool readWriteWords);
+Error* Fan_Init(Fan*, FanConfiguration*, short ecPollInterval, int criticalTemperature, bool readWriteWords);
 
 Error* Fan_UpdateCurrentSpeed(Fan*);
 float  Fan_GetCurrentSpeed(Fan*);

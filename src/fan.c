@@ -9,7 +9,7 @@
 // CONSTRUCTOR
 // ============================================================================
 
-Error* Fan_Init(Fan* self, FanConfiguration* cfg, int criticalTemperature, bool readWriteWords) {
+Error* Fan_Init(Fan* self, FanConfiguration* cfg, short ecPollInterval, int criticalTemperature, bool readWriteWords) {
   my.fanConfig            = cfg;
   my.mode                 = Fan_ModeAuto;
   my.criticalTemperature  = criticalTemperature;
@@ -23,6 +23,10 @@ Error* Fan_Init(Fan* self, FanConfiguration* cfg, int criticalTemperature, bool 
   my.minSpeedValueReadAbs = min(my.minSpeedValueRead, my.maxSpeedValueRead);
   my.maxSpeedValueReadAbs = max(my.minSpeedValueRead, my.maxSpeedValueRead);
   my.fanSpeedSteps        = my.maxSpeedValueReadAbs - my.minSpeedValueReadAbs;
+
+  Error* e;
+  e = TemperatureFilter_Init(&my.tempFilter, ecPollInterval, NBFC_TEMPERATURE_FILTER_TIMESPAN);
+  e_check();
 
   // TODO #1: How to handle empty TemperatureThresholds? [see model_config.c]
   if (! cfg->TemperatureThresholds.size)
@@ -180,3 +184,25 @@ Error* Fan_ECFlush(Fan* self) {
   return Fan_ECWriteValue(self, value);
 }
 
+Error* Fan_GetSpecificTemperature(Fan* self, float* out) {
+  if (my.fanConfig->SpecificTemperatureReadRegister >= 0) {
+    union { uint8_t byte; uint16_t word; } val = {0};
+
+    Error* e = my.readWriteWords
+      ? ec->ReadWord(my.fanConfig->SpecificTemperatureReadRegister, &val.word)
+      : ec->ReadByte(my.fanConfig->SpecificTemperatureReadRegister, &val.byte);
+
+    if (! e) {
+      float temp = 1.0 * val.word
+        * my.fanConfig->SpecificTemperatureMultiplier
+        / my.fanConfig->SpecificTemperatureDivider;
+
+      temp = TemperatureFilter_FilterTemperature(&self->tempFilter, temp);
+      *out = temp;
+    }
+
+    return e;
+  } else {
+    return err_string(0, "Fan-specific register unavailable");
+  }
+}

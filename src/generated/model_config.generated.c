@@ -1,4 +1,4 @@
-/* Auto generated code ['../tools/config.py', 'source'] */
+/* Auto generated code ['./tools/config.py', 'source'] */
 
 struct TemperatureThreshold TemperatureThreshold_Unset = {
 	short_Unset,
@@ -161,6 +161,9 @@ struct FanConfiguration FanConfiguration_Unset = {
 	short_Unset,
 	short_Unset,
 	short_Unset,
+	int_Unset,
+	int_Unset,
+	short_Unset,
 	short_Unset,
 	short_Unset,
 	short_Unset,
@@ -184,6 +187,21 @@ Error* FanConfiguration_ValidateFields(FanConfiguration* self) {
 		return err_string(err_string(0, "WriteRegister"), "Missing option");
 	else if (! (self->WriteRegister >= 0 && self->WriteRegister <= 255))
 		return err_string(err_string(0, "WriteRegister"), "requires: parameter >= 0 && parameter <= 255");
+
+	if (self->SpecificTemperatureReadRegister == short_Unset)
+		self->SpecificTemperatureReadRegister = -1;
+	else if (! (self->SpecificTemperatureReadRegister >= -1 && self->SpecificTemperatureReadRegister <= 255))
+		return err_string(err_string(0, "SpecificTemperatureReadRegister"), "requires: parameter >= -1 && parameter <= 255");
+
+	if (self->SpecificTemperatureMultiplier == int_Unset)
+		self->SpecificTemperatureMultiplier = 1;
+	else if (! (self->SpecificTemperatureMultiplier >= 1))
+		return err_string(err_string(0, "SpecificTemperatureMultiplier"), "requires: parameter >= 1");
+
+	if (self->SpecificTemperatureDivider == int_Unset)
+		self->SpecificTemperatureDivider = 1;
+	else if (! (self->SpecificTemperatureDivider >= 1))
+		return err_string(err_string(0, "SpecificTemperatureDivider"), "requires: parameter >= 1");
 
 	if (self->MinSpeedValue == short_Unset)
 		return err_string(err_string(0, "MinSpeedValue"), "Missing option");
@@ -229,6 +247,12 @@ Error* FanConfiguration_FromJson(FanConfiguration* obj, const nx_json* json) {
 			e = short_FromJson(&obj->ReadRegister, c);
 		else if (!strcmp(c->key, "WriteRegister"))
 			e = short_FromJson(&obj->WriteRegister, c);
+		else if (!strcmp(c->key, "SpecificTemperatureReadRegister"))
+			e = short_FromJson(&obj->SpecificTemperatureReadRegister, c);
+		else if (!strcmp(c->key, "SpecificTemperatureMultiplier"))
+			e = int_FromJson(&obj->SpecificTemperatureMultiplier, c);
+		else if (!strcmp(c->key, "SpecificTemperatureDivider"))
+			e = int_FromJson(&obj->SpecificTemperatureDivider, c);
 		else if (!strcmp(c->key, "MinSpeedValue"))
 			e = short_FromJson(&obj->MinSpeedValue, c);
 		else if (!strcmp(c->key, "MaxSpeedValue"))

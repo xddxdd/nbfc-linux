@@ -56,6 +56,7 @@ Error* Service_Init() {
     e = Fan_Init(
         &fans.data[i],
         &model_config.FanConfigurations.data[i],
+        model_config.EcPollInterval,
         model_config.CriticalTemperature,
         model_config.ReadWriteWords
     );
@@ -141,7 +142,12 @@ Error* Service_Loop() {
   }
 
   for_each_array(Fan*, f, fans) {
-    Fan_SetTemperature(f, current_temperature);
+    float fan_specific_temperature = 0.0f;
+    if ((e = Fan_GetSpecificTemperature(f, &fan_specific_temperature))) {
+      Fan_SetTemperature(f, current_temperature);
+    } else {
+      Fan_SetTemperature(f, fan_specific_temperature);
+    }
     if (! options.read_only) {
       e = Fan_ECFlush(f);
       e_warn();
@@ -254,4 +260,3 @@ void Service_Cleanup() {
   if (sensor)
     sensor->Cleanup();
 }
-
