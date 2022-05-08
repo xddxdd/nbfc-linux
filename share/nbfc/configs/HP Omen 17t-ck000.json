@@ -1,0 +1,86 @@
+{
+ "NotebookModel": "HP Omen 17t-ck000",
+ "Author": "Lan Tian",
+ "EcPollInterval": 1000,
+ "ReadWriteWords": false,
+ "CriticalTemperature": 100,
+ "FanConfigurations": [
+	{
+	 "ReadRegister": 44,
+	 "WriteRegister": 44,
+	 "SpecificTemperatureReadRegister": 87,
+	 "MinSpeedValue": 0,
+	 "MaxSpeedValue": 100,
+	 "ResetRequired": true,
+	 "FanSpeedResetValue": 0,
+	 "FanDisplayName": "Left Fan (CPU)",
+	 "TemperatureThresholds": [
+	  {
+	   "UpThreshold": 70,
+	   "DownThreshold": 0,
+	   "FanSpeed": 0.0
+	  },
+	  {
+	   "UpThreshold": 75,
+	   "DownThreshold": 65,
+	   "FanSpeed": 32.0
+	  },
+	  {
+	   "UpThreshold": 80,
+	   "DownThreshold": 70,
+	   "FanSpeed": 48.0
+	  },
+	  {
+	   "UpThreshold": 90,
+	   "DownThreshold": 75,
+	   "FanSpeed": 64.0
+	  },
+	  {
+	   "UpThreshold": 100,
+	   "DownThreshold": 80,
+	   "FanSpeed": 100.0
+	  }
+	 ],
+	 "FanSpeedPercentageOverrides": []
+	},
+	{
+	 "ReadRegister": 45,
+	 "WriteRegister": 45,
+	 "SpecificTemperatureReadRegister": 183,
+	 "MinSpeedValue": 0,
+	 "MaxSpeedValue": 100,
+	 "ResetRequired": true,
+	 "FanSpeedResetValue": 0,
+	 "FanDisplayName": "Right Fan (GPU)",
+	 "TemperatureThresholds": [
+	  {
+	   "UpThreshold": 70,
+	   "DownThreshold": 0,
+	   "FanSpeed": 0.0
+	  },
+	  {
+	   "UpThreshold": 75,
+	   "DownThreshold": 65,
+	   "FanSpeed": 32.0
+	  },
+	  {
+	   "UpThreshold": 80,
+	   "DownThreshold": 70,
+	   "FanSpeed": 48.0
+	  },
+	  {
+	   "UpThreshold": 90,
+	   "DownThreshold": 75,
+	   "FanSpeed": 64.0
+	  },
+	  {
+	   "UpThreshold": 100,
+	   "DownThreshold": 80,
+	   "FanSpeed": 100.0
+	  }
+	 ],
+	 "FanSpeedPercentageOverrides": []
+	}
+ ],
+ "RegisterWriteConfigurations": []
+}
