@@ -22,7 +22,7 @@
 	  },
 	  {
 	   "UpThreshold": 75,
-	   "DownThreshold": 65,
+	   "DownThreshold": 50,
 	   "FanSpeed": 32.0
 	  },
 	  {
@@ -60,7 +60,7 @@
 	  },
 	  {
 	   "UpThreshold": 75,
-	   "DownThreshold": 65,
+	   "DownThreshold": 50,
 	   "FanSpeed": 32.0
 	  },
 	  {
