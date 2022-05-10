@@ -146,6 +146,9 @@ Error* Service_Loop() {
     if ((e = Fan_GetSpecificTemperature(f, &fan_specific_temperature))) {
       Fan_SetTemperature(f, current_temperature);
     } else {
+      if (f->fanConfig->SpecificTemperatureMaxWithOS) {
+        fan_specific_temperature = fmax(fan_specific_temperature, current_temperature);
+      }
       Fan_SetTemperature(f, fan_specific_temperature);
     }
     if (! options.read_only) {

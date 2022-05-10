@@ -42,6 +42,7 @@ struct FanConfiguration {
 	short           SpecificTemperatureReadRegister;
 	int             SpecificTemperatureMultiplier;
 	int             SpecificTemperatureDivider;
+	Boolean         SpecificTemperatureMaxWithOS;
 	short           MinSpeedValue;
 	short           MaxSpeedValue;
 	short           MinSpeedValueRead;

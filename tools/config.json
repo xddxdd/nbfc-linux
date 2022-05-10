@@ -118,6 +118,11 @@
       "valid": "parameter >= 1",
       "help": "The divider of temperature value read from EC."
     },
+    "SpecificTemperatureMaxWithOS": {
+      "type": "Boolean",
+      "default": "Boolean_False",
+      "help": "Whether to use the max temperature of the specific value and the OS temperature."
+    },
     "MinSpeedValue": {
       "type": "short",
       "help": "The value which puts the fan to the lowest possible speed (usually this stops the fan). Must be an integer between 0 and 255 or 0 and 65535 if ReadWriteWords is `true`. Note: MinSpeedValue does not necessarily have to be smaller than MaxSpeedValue"

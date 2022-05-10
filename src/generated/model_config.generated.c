@@ -163,6 +163,7 @@ struct FanConfiguration FanConfiguration_Unset = {
 	short_Unset,
 	int_Unset,
 	int_Unset,
+	Boolean_Unset,
 	short_Unset,
 	short_Unset,
 	short_Unset,
@@ -202,6 +203,9 @@ Error* FanConfiguration_ValidateFields(FanConfiguration* self) {
 		self->SpecificTemperatureDivider = 1;
 	else if (! (self->SpecificTemperatureDivider >= 1))
 		return err_string(err_string(0, "SpecificTemperatureDivider"), "requires: parameter >= 1");
+
+	if (self->SpecificTemperatureMaxWithOS == Boolean_Unset)
+		self->SpecificTemperatureMaxWithOS = Boolean_False;
 
 	if (self->MinSpeedValue == short_Unset)
 		return err_string(err_string(0, "MinSpeedValue"), "Missing option");
@@ -253,6 +257,8 @@ Error* FanConfiguration_FromJson(FanConfiguration* obj, const nx_json* json) {
 			e = int_FromJson(&obj->SpecificTemperatureMultiplier, c);
 		else if (!strcmp(c->key, "SpecificTemperatureDivider"))
 			e = int_FromJson(&obj->SpecificTemperatureDivider, c);
+		else if (!strcmp(c->key, "SpecificTemperatureMaxWithOS"))
+			e = Boolean_FromJson(&obj->SpecificTemperatureMaxWithOS, c);
 		else if (!strcmp(c->key, "MinSpeedValue"))
 			e = short_FromJson(&obj->MinSpeedValue, c);
 		else if (!strcmp(c->key, "MaxSpeedValue"))
