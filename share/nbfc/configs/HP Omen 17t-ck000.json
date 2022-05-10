@@ -12,7 +12,7 @@
 	 "MinSpeedValue": 0,
 	 "MaxSpeedValue": 100,
 	 "ResetRequired": true,
-	 "FanSpeedResetValue": 0,
+	 "FanSpeedResetValue": 255,
 	 "FanDisplayName": "Left Fan (CPU)",
 	 "TemperatureThresholds": [
 	  {
@@ -50,7 +50,7 @@
 	 "MinSpeedValue": 0,
 	 "MaxSpeedValue": 100,
 	 "ResetRequired": true,
-	 "FanSpeedResetValue": 0,
+	 "FanSpeedResetValue": 255,
 	 "FanDisplayName": "Right Fan (GPU)",
 	 "TemperatureThresholds": [
 	  {
