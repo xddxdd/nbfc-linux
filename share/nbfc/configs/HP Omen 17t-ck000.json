@@ -17,13 +17,13 @@
 	 "FanDisplayName": "Left Fan (CPU)",
 	 "TemperatureThresholds": [
 	  {
-	   "UpThreshold": 70,
+	   "UpThreshold": 30,
 	   "DownThreshold": 0,
 	   "FanSpeed": 0.0
 	  },
 	  {
 	   "UpThreshold": 75,
-	   "DownThreshold": 50,
+	   "DownThreshold": 20,
 	   "FanSpeed": 32.0
 	  },
 	  {
@@ -56,13 +56,13 @@
 	 "FanDisplayName": "Right Fan (GPU)",
 	 "TemperatureThresholds": [
 	  {
-	   "UpThreshold": 70,
+	   "UpThreshold": 30,
 	   "DownThreshold": 0,
 	   "FanSpeed": 0.0
 	  },
 	  {
 	   "UpThreshold": 75,
-	   "DownThreshold": 50,
+	   "DownThreshold": 20,
 	   "FanSpeed": 32.0
 	  },
 	  {
